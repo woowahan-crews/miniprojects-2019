@@ -4,17 +4,19 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
+import javax.persistence.*;
 
 @Entity
 @Getter
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Article {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(length = 200)
-    String contents;
+    private String contents;
 
     @Lob
     @Column(nullable = false)
