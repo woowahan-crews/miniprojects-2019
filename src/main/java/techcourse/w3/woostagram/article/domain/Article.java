@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import techcourse.w3.woostagram.mediafile.domain.MediaFile;
 
 import javax.persistence.*;
 
@@ -19,15 +20,13 @@ public class Article {
     @Column(length = 200)
     private String contents;
 
-    @Lob
-    @Column(nullable = false)
-    private byte[] image;
-
-
+    @OneToOne
+    @JoinColumn(name = "mediaFile", referencedColumnName = "id")
+    private MediaFile mediaFile;
 
     @Builder
-    public Article(final String contents, final byte[] image) {
+    public Article(final String contents, final MediaFile mediaFile) {
         this.contents = contents;
-        this.image = image;
+        this.mediaFile = mediaFile;
     }
 }

@@ -2,7 +2,7 @@ package techcourse.w3.woostagram.mediafile.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import techcourse.w3.woostagram.mediafile.MediaFile;
+import techcourse.w3.woostagram.mediafile.domain.MediaFile;
 import techcourse.w3.woostagram.mediafile.domain.MediaFileRepository;
 
 @Service
@@ -14,7 +14,7 @@ public class MediaFileService {
     }
 
     public MediaFile saveFile(MultipartFile multipartFile) throws Exception{
-        MediaFile mediaFile = new MediaFile(multipartFile.getContentType(), multipartFile.getBytes());
+        MediaFile mediaFile = new MediaFile(multipartFile);
         return mediaFileRepository.save(mediaFile);
     }
 

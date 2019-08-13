@@ -1,14 +1,15 @@
-package techcourse.w3.woostagram.mediafile;
+package techcourse.w3.woostagram.mediafile.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@EqualsAndHashCode(of  ="id")
+@EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 public class MediaFile {
     @Id
@@ -22,8 +23,8 @@ public class MediaFile {
     @Lob
     private byte[] data;
 
-    public MediaFile(final String fileType, final byte[] data) {
-        this.fileType = fileType;
-        this.data = data;
+    public MediaFile(final MultipartFile multipartFile) throws Exception {
+        this.fileType = multipartFile.getContentType();
+        this.data = multipartFile.getBytes();
     }
 }
