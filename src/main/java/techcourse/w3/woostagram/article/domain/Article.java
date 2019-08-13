@@ -1,5 +1,6 @@
 package techcourse.w3.woostagram.article.domain;
 
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,13 @@ public class Article {
 
     @Lob
     @Column(nullable = false)
-    private Byte[] image;
+    private byte[] image;
+
+
+
+    @Builder
+    public Article(final String contents, final byte[] image) {
+        this.contents = contents;
+        this.image = image;
+    }
 }
