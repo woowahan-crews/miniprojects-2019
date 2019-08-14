@@ -24,4 +24,12 @@ public class ArticleService {
         MediaFile mediaFile = mediaFileService.saveFile(articleDto.getImage());
         return articleRepository.save(new Article(articleDto.getContents(), mediaFile));
     }
+
+    public ArticleDto show(Long articleId) {
+        Article article = articleRepository.findById(articleId).orElseThrow(RuntimeException::new);
+        return ArticleDto.builder()
+                .mediaFileId(article.getMediaFile().getId())
+                .contents(article.getContents())
+                .build();
+    }
 }

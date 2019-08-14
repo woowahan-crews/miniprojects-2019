@@ -10,11 +10,13 @@ import org.springframework.web.multipart.MultipartFile;
 @Setter
 @NoArgsConstructor
 public class ArticleDto {
+    private Long mediaFileId;
     private MultipartFile image;
     private String contents;
 
     @Builder
-    public ArticleDto(final MultipartFile image, final String contents) {
+    public ArticleDto(final Long mediaFileId, final MultipartFile image, final String contents) {
+        this.mediaFileId = mediaFileId;
         this.image = image;
         this.contents = contents;
     }
