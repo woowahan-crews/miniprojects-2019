@@ -13,6 +13,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.reactive.function.BodyInserters;
 import reactor.core.publisher.Mono;
+import techcourse.w3.woostagram.common.support.TestDataInitializer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,12 +27,10 @@ public class AbstractControllerTests {
     @Autowired
     private WebTestClient webTestClient;
     private String cookie;
-    private static final String TEST_EMAIL = "a@naver.com";
-    private static final String TEST_PW = "Aa1234!!";
 
     @BeforeEach
     protected void setUp() {
-        loginRequest(TEST_EMAIL, TEST_PW);
+        loginRequest(TestDataInitializer.authorUser.getEmail(), TestDataInitializer.authorUser.getPassword());
     }
 
     protected EntityExchangeResult<byte[]> postMultipartRequest(String uri, MultiValueMap params) {
